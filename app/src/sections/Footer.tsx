@@ -51,7 +51,7 @@ export default function Footer() {
             className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter"
             style={{ color: 'var(--color-paper)', opacity: 0.15 }}
           >
-            KDM 3D
+            KADANS KONSULT
           </h2>
         </div>
 
@@ -92,10 +92,10 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:info@kdm3d.be"
+                  href="mailto:kasper.daems@gmail.com"
                   className="footer-link"
                 >
-                  info@kdm3d.be
+                  kasper.daems@gmail.com
                 </a>
               </li>
               <li>
@@ -117,7 +117,7 @@ export default function Footer() {
             className="font-mono text-xs tracking-wider"
             style={{ color: 'rgba(255,232,214,0.4)' }}
           >
-            &copy; {new Date().getFullYear()} KDM 3D. Alle rechten voorbehouden.
+            &copy; {new Date().getFullYear()} KADANS KONSULT. Alle rechten voorbehouden.
           </p>
           <div className="flex items-center gap-6">
             <span className="tech-metrics">

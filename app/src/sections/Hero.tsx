@@ -85,7 +85,7 @@ export default function Hero() {
 
       <div ref={contentRef} className="hero-content">
         <div className="overflow-hidden mb-2">
-          <h1 className="hero-title hero-title-line">KDM 3D</h1>
+          <h1 className="hero-title hero-title-line">KADANS KONSULT</h1>
         </div>
         <div className="overflow-hidden">
           <p className="hero-tagline hero-title-line">

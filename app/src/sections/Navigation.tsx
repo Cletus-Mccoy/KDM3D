@@ -66,7 +66,7 @@ export default function Navigation() {
             className="font-mono text-lg font-bold tracking-tight"
             style={{ color: 'white' }}
           >
-            KDM<span style={{ color: '#F48C06' }}>3D</span>
+            KADANS<span style={{ color: '#F48C06' }}> KONSULT</span>
           </span>
         </a>
 

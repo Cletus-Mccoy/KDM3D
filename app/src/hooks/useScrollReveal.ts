@@ -82,6 +82,7 @@ export function useScrollReveal<T extends HTMLElement>(
     return () => {
       tl.kill();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return ref;

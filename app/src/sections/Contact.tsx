@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -8,11 +9,12 @@ export default function Contact() {
   const formRef = useScrollReveal<HTMLDivElement>({ x: -40, opacity: 0 });
   const infoRef = useScrollReveal<HTMLDivElement>({ x: 40, opacity: 0, delay: 0.2 });
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [state, handleSubmit] = useForm('mkoavqqp');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Show success dialog when form submission succeeds
+  if (state.succeeded && !dialogOpen) {
     setDialogOpen(true);
-  };
+  }
 
   return (
     <section
@@ -42,11 +44,13 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
+                  <label htmlFor="name" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
                     Naam
                   </label>
                   <input
+                    id="name"
                     type="text"
+                    name="name"
                     required
                     placeholder="Jouw naam"
                     className="contact-input"
@@ -55,14 +59,18 @@ export default function Contact() {
                       borderColor: 'rgba(255,255,255,0.15)',
                       color: 'white',
                     }}
+                    disabled={state.submitting}
                   />
+                  <ValidationError field="name" errors={state.errors} />
                 </div>
                 <div>
-                  <label className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
+                  <label htmlFor="email" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
                     E-mail
                   </label>
                   <input
+                    id="email"
                     type="email"
+                    name="email"
                     required
                     placeholder="jouw@email.be"
                     className="contact-input"
@@ -71,16 +79,20 @@ export default function Contact() {
                       borderColor: 'rgba(255,255,255,0.15)',
                       color: 'white',
                     }}
+                    disabled={state.submitting}
                   />
+                  <ValidationError field="email" errors={state.errors} />
                 </div>
               </div>
 
               <div>
-                <label className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
+                <label htmlFor="subject" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
                   Onderwerp
                 </label>
                 <input
+                  id="subject"
                   type="text"
+                  name="subject"
                   required
                   placeholder="Waar gaat je project over?"
                   className="contact-input"
@@ -89,14 +101,18 @@ export default function Contact() {
                     borderColor: 'rgba(255,255,255,0.15)',
                     color: 'white',
                   }}
+                  disabled={state.submitting}
                 />
+                <ValidationError field="subject" errors={state.errors} />
               </div>
 
               <div>
-                <label className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
+                <label htmlFor="message" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
                   Bericht
                 </label>
                 <textarea
+                  id="message"
+                  name="message"
                   required
                   rows={5}
                   placeholder="Beschrijf je project zo gedetailleerd mogelijk..."
@@ -106,15 +122,18 @@ export default function Contact() {
                     borderColor: 'rgba(255,255,255,0.15)',
                     color: 'white',
                   }}
+                  disabled={state.submitting}
                 />
+                <ValidationError field="message" errors={state.errors} />
               </div>
 
               <button
                 type="submit"
                 className="hero-cta w-full sm:w-auto justify-center"
+                disabled={state.submitting}
               >
                 <Send size={16} />
-                Verstuur bericht
+                {state.submitting ? 'Verzenden...' : 'Verstuur bericht'}
               </button>
             </form>
           </div>
@@ -131,7 +150,7 @@ export default function Contact() {
                 </h4>
                 <div className="space-y-4">
                   <a
-                    href="mailto:info@kdm3d.be"
+                    href="mailto:kasper.daems@gmail.com"
                     className="flex items-center gap-3 group"
                   >
                     <div
@@ -147,7 +166,7 @@ export default function Contact() {
                       className="group-hover:text-orange-400 transition-colors"
                       style={{ color: 'rgba(255,232,214,0.8)' }}
                     >
-                      info@kdm3d.be
+                      kasper.daems@gmail.com
                     </span>
                   </a>
 
