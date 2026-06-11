@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle } from 'lucide-react';
@@ -12,9 +12,11 @@ export default function Contact() {
   const [state, handleSubmit] = useForm('mnjybgrr');
 
   // Show success dialog when form submission succeeds
-  if (state.succeeded && !dialogOpen) {
-    setDialogOpen(true);
-  }
+  useEffect(() => {
+    if (state.succeeded) {
+      setDialogOpen(true);
+    }
+  }, [state.succeeded]);
 
   return (
     <section
