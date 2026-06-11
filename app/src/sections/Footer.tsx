@@ -113,12 +113,29 @@ export default function Footer() {
           className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{ borderTop: '1px solid rgba(255,232,214,0.1)' }}
         >
-          <p
-            className="font-mono text-xs tracking-wider"
-            style={{ color: 'rgba(255,232,214,0.4)' }}
-          >
-            &copy; {new Date().getFullYear()} KADANS KONSULT. Alle rechten voorbehouden.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p
+              className="font-mono text-xs tracking-wider"
+              style={{ color: 'rgba(255,232,214,0.4)' }}
+            >
+              &copy; {new Date().getFullYear()} KADANS KONSULT. Alle rechten voorbehouden.
+            </p>
+            <p
+              className="font-mono text-xs tracking-wider"
+              style={{ color: 'rgba(255,232,214,0.4)' }}
+            >
+              Made with ❤️ in Belgium by{' '}
+              <a
+                href="https://truyens.pro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange-400 transition-colors"
+                style={{ color: 'rgba(255,232,214,0.6)' }}
+              >
+                truyens.pro
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-6">
             <span className="tech-metrics">
               LAYER HEIGHT: 0.12MM
