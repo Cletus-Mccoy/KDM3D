@@ -1,0 +1,11 @@
+Dit is een voorbeeld van een project beschrijving voor Google Drive portfolio integratie.
+
+Je kunt meerdere alinea's gebruiken om je project in detail te beschrijven. Vertel over de uitdagingen, de oplossingen, en wat dit project uniek maakt.
+
+Technische details:
+- Materiaal gebruikt
+- Print tijd
+- Speciale technieken
+- Klant feedback
+
+Deze tekst wordt automatisch ingelezen en getoond in de project gallery wanneer een bezoeker op het project klikt.
