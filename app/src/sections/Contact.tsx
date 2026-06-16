@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -11,6 +12,7 @@ export default function Contact() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [state, handleSubmit] = useForm('mnjybgrr');
   const formElementRef = useRef<HTMLFormElement>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   // Show success dialog when form submission succeeds
   useEffect(() => {
@@ -20,6 +22,25 @@ export default function Contact() {
       formElementRef.current?.reset();
     }
   }, [state.succeeded]);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    // Get reCAPTCHA token
+    const token = await executeRecaptcha('contact_form');
+
+    // Create a new FormData with the token included
+    const formData = new FormData(e.currentTarget);
+    formData.append('g-recaptcha-response', token);
+
+    // Submit to Formspree
+    await handleSubmit(e);
+  };
 
   return (
     <section
@@ -46,7 +67,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Form */}
           <div ref={formRef} className="lg:col-span-3">
-            <form ref={formElementRef} onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formElementRef} onSubmit={onSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
