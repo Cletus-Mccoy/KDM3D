@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle } from 'lucide-react';
@@ -10,11 +10,14 @@ export default function Contact() {
   const infoRef = useScrollReveal<HTMLDivElement>({ x: 40, opacity: 0, delay: 0.2 });
   const [dialogOpen, setDialogOpen] = useState(false);
   const [state, handleSubmit] = useForm('mnjybgrr');
+  const formElementRef = useRef<HTMLFormElement>(null);
 
   // Show success dialog when form submission succeeds
   useEffect(() => {
     if (state.succeeded) {
       setDialogOpen(true);
+      // Reset form after successful submission
+      formElementRef.current?.reset();
     }
   }, [state.succeeded]);
 
@@ -43,7 +46,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Form */}
           <div ref={formRef} className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formElementRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
