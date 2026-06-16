@@ -1,5 +1,15 @@
 # Google reCAPTCHA v3 Setup Guide
 
+## Multi-Layer Spam Protection
+
+This contact form uses **three layers of protection**:
+
+1. **Client-side rate limiting** (localStorage) - 3 submissions per hour
+2. **reCAPTCHA v3** (invisible) - Behavioral analysis and bot detection
+3. **Formspree validation** - Server-side verification
+
+See [RATE-LIMITING.md](./RATE-LIMITING.md) for details on the rate limiting implementation.
+
 ## What is reCAPTCHA v3?
 reCAPTCHA v3 runs invisibly in the background and scores user interactions without requiring any user action (no checkboxes or challenges). It returns a score (0.0 - 1.0) indicating how likely the interaction is from a human.
 

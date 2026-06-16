@@ -2,14 +2,17 @@ import { useState, useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle, AlertCircle } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { contactFormRateLimiter, RateLimiter } from '@/lib/rateLimiter';
 
 export default function Contact() {
   const headingRef = useScrollReveal<HTMLDivElement>({ y: 40 });
   const formRef = useScrollReveal<HTMLDivElement>({ x: -40, opacity: 0 });
   const infoRef = useScrollReveal<HTMLDivElement>({ x: 40, opacity: 0, delay: 0.2 });
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [rateLimitDialogOpen, setRateLimitDialogOpen] = useState(false);
+  const [rateLimitInfo, setRateLimitInfo] = useState({ resetTime: 0, remainingAttempts: 0 });
   const [state, handleSubmit] = useForm('mnjybgrr');
   const formElementRef = useRef<HTMLFormElement>(null);
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -26,6 +29,17 @@ export default function Contact() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Check rate limit first
+    const rateLimitCheck = contactFormRateLimiter.canSubmit();
+    if (!rateLimitCheck.allowed) {
+      setRateLimitInfo({
+        resetTime: rateLimitCheck.resetTime || 0,
+        remainingAttempts: rateLimitCheck.remainingAttempts,
+      });
+      setRateLimitDialogOpen(true);
+      return;
+    }
+
     if (!executeRecaptcha) {
       console.log('Execute recaptcha not yet available');
       return;
@@ -37,6 +51,9 @@ export default function Contact() {
     // Create a new FormData with the token included
     const formData = new FormData(e.currentTarget);
     formData.append('g-recaptcha-response', token);
+
+    // Record the submission attempt
+    contactFormRateLimiter.recordSubmission();
 
     // Submit to Formspree
     await handleSubmit(e);
@@ -300,6 +317,35 @@ export default function Contact() {
           <div className="mt-4 flex justify-end">
             <button
               onClick={() => setDialogOpen(false)}
+              className="hero-cta"
+            >
+              Begrepen
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={rateLimitDialogOpen} onOpenChange={setRateLimitDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="flex items-center gap-2 mb-2">
+              <AlertCircle className="text-orange-500" size={24} />
+              <DialogTitle className="text-xl font-bold" style={{ color: 'var(--color-void)' }}>
+                Te veel aanvragen
+              </DialogTitle>
+            </div>
+            <DialogDescription className="text-gray-600">
+              Je hebt de limiet bereikt van 3 berichten per uur. Dit helpt ons spam te voorkomen.
+              {rateLimitInfo.resetTime > 0 && (
+                <span className="block mt-2 font-semibold text-gray-700">
+                  Probeer opnieuw over: {RateLimiter.formatResetTime(rateLimitInfo.resetTime)}
+                </span>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4 flex justify-end">
+            <button
+              onClick={() => setRateLimitDialogOpen(false)}
               className="hero-cta"
             >
               Begrepen
