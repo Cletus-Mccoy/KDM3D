@@ -22,8 +22,8 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<MakerPage />} />
-      <Route path="/consulting" element={<ConsultingPage />} />
+      <Route path="/" element={<ConsultingPage />} />
+      <Route path="/maker" element={<MakerPage />} />
     </Routes>
   );
 }

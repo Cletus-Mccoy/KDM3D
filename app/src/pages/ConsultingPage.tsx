@@ -44,7 +44,7 @@ export default function ConsultingPage() {
     <div className="relative">
       <Navigation
         navLinks={navLinks}
-        crossLink={{ label: '3D-Printservice →', to: '/' }}
+        crossLink={{ label: '3D-Printservice →', to: '/maker' }}
       />
       <main>
         <ConsultingHero />
@@ -65,7 +65,7 @@ export default function ConsultingPage() {
       </main>
       <Footer
         linkGroups={footerLinkGroups}
-        crossLink={{ label: '3D-Printservice →', to: '/' }}
+        crossLink={{ label: '3D-Printservice →', to: '/maker' }}
       />
     </div>
   );

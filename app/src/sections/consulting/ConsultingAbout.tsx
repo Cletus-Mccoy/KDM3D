@@ -1,12 +1,11 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import { Award, Lightbulb, Users, Wrench } from 'lucide-react';
+import { Award, Lightbulb, Wrench } from 'lucide-react';
 
-// TODO(content): confirm real stats for the consulting track (engagements, sectors, etc.)
+// TODO(content): revisit once real client/engagement counts are available.
 const stats = [
   { icon: Wrench, value: '5+', label: 'Jaar technische ervaring' },
-  { icon: Users, value: '—', label: 'Klanten begeleid' },
   { icon: Lightbulb, value: '100%', label: 'Onafhankelijk advies' },
-  { icon: Award, value: '—', label: 'Sectoren' },
+  { icon: Award, value: '3', label: 'Certificeringen (Scrum, Lean, Six Sigma)' },
 ];
 
 // TODO(content): confirm the consulting engagement process — placeholder mirrors the maker-service flow for now.
@@ -106,7 +105,7 @@ export default function ConsultingAbout() {
         <div
           ref={statsRef}
           data-stagger
-          className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-20"
         >
           {stats.map((stat) => (
             <div

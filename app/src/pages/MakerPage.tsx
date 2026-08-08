@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navigation from '../sections/Navigation';
 import Hero from '../sections/Hero';
 import Manifesto from '../sections/Manifesto';
@@ -40,11 +41,19 @@ const footerLinkGroups = [
 ];
 
 export default function MakerPage() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = 'KADANS KONSULT - 3D Printservice';
+    return () => {
+      document.title = previousTitle;
+    };
+  }, []);
+
   return (
     <div className="relative">
       <Navigation
         navLinks={navLinks}
-        crossLink={{ label: 'Engineering Consulting →', to: '/consulting' }}
+        crossLink={{ label: 'Engineering Consulting →', to: '/' }}
       />
       <main>
         <Hero />
@@ -56,7 +65,7 @@ export default function MakerPage() {
       </main>
       <Footer
         linkGroups={footerLinkGroups}
-        crossLink={{ label: 'Engineering Consulting →', to: '/consulting' }}
+        crossLink={{ label: 'Engineering Consulting →', to: '/' }}
         showPrintMetrics
       />
     </div>

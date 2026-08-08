@@ -114,18 +114,19 @@
   z-index: 2;
   text-align: center;
   padding: 0 var(--container-px);
-  max-width: 900px;
+  max-width: min(1100px, 92vw);
 }
 
 .hero-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3rem, 12vw, 9rem);
+  font-size: clamp(2.5rem, 9vw, 6.5rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: white;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  overflow-wrap: break-word;
 }
 
 .hero-tagline {
