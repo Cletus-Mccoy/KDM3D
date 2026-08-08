@@ -1,47 +1,20 @@
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { portfolioItems, type PortfolioTrack } from '../data/portfolio';
 
-const projects = [
-  {
-    title: 'Architecturale maquettes',
-    category: 'Maatwerk',
-    image: '/images/portfolio-1.jpg',
-    ratio: '4/3',
-  },
-  {
-    title: 'Organische lattice structuur',
-    category: 'Prototyping',
-    image: '/images/portfolio-2.jpg',
-    ratio: '3/4',
-  },
-  {
-    title: 'Desk organizer',
-    category: 'Functioneel design',
-    image: '/images/portfolio-3.jpg',
-    ratio: '4/3',
-  },
-  {
-    title: 'Mechanische onderdelen',
-    category: 'Technisch',
-    image: '/images/portfolio-4.jpg',
-    ratio: '16/9',
-  },
-  {
-    title: 'Artistieke sculptuur',
-    category: 'Kunst',
-    image: '/images/portfolio-5.jpg',
-    ratio: '3/4',
-  },
-  {
-    title: 'Industriele brackets',
-    category: 'Productie',
-    image: '/images/portfolio-6.jpg',
-    ratio: '4/3',
-  },
-];
+interface PortfolioProps {
+  track: PortfolioTrack;
+  title?: string;
+  description?: string;
+}
 
-export default function Portfolio() {
+export default function Portfolio({
+  track,
+  title = 'Eerdere projecten',
+  description = 'Een selectie van 3D-geprinte projecten die ik heb mogen realiseren. Van functionele prototypes tot artistieke objecten.',
+}: PortfolioProps) {
   const headingRef = useScrollReveal<HTMLDivElement>({ y: 40 });
   const gridRef = useScrollReveal<HTMLDivElement>({ y: 40, stagger: 0.1 });
+  const projects = portfolioItems.filter((item) => item.track === track);
 
   return (
     <section
@@ -53,13 +26,12 @@ export default function Portfolio() {
         {/* Header */}
         <div ref={headingRef} className="text-center mb-16">
           <p className="section-label">Portfolio</p>
-          <h2 className="section-title">Eerdere projecten</h2>
+          <h2 className="section-title">{title}</h2>
           <p
             className="section-body mx-auto"
             style={{ maxWidth: 550 }}
           >
-            Een selectie van 3D-geprinte projecten die ik heb mogen realiseren.
-            Van functionele prototypes tot artistieke objecten.
+            {description}
           </p>
         </div>
 
@@ -76,6 +48,11 @@ export default function Portfolio() {
               className="portfolio-item"
               style={{ '--ratio': project.ratio } as React.CSSProperties}
             >
+              {project.placeholder && (
+                <span className="portfolio-item-placeholder-badge">
+                  Voorbeeld
+                </span>
+              )}
               <img
                 src={project.image}
                 alt={project.title}

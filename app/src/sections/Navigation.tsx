@@ -1,15 +1,19 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router';
 import { Menu, X } from 'lucide-react';
 
-const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Over Mij', href: '#over-mij' },
-  { label: 'Diensten', href: '#diensten' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
-];
+interface NavLink {
+  label: string;
+  href: string;
+}
 
-export default function Navigation() {
+interface NavigationProps {
+  navLinks: NavLink[];
+  /** Link to the other track (maker <-> consulting). */
+  crossLink: { label: string; to: string };
+}
+
+export default function Navigation({ navLinks, crossLink }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -40,7 +44,7 @@ export default function Navigation() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [navLinks]);
 
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -82,6 +86,9 @@ export default function Navigation() {
               {link.label}
             </a>
           ))}
+          <Link to={crossLink.to} className="nav-link">
+            {crossLink.label}
+          </Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -117,6 +124,13 @@ export default function Navigation() {
               {link.label}
             </a>
           ))}
+          <Link
+            to={crossLink.to}
+            onClick={() => setMenuOpen(false)}
+            className="nav-link text-base py-2"
+          >
+            {crossLink.label}
+          </Link>
         </div>
       )}
     </nav>

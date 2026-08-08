@@ -1,13 +1,8 @@
 import { useEffect } from 'react';
+import { Routes, Route } from 'react-router';
 import { useLenis } from './hooks/useLenis';
-import Navigation from './sections/Navigation';
-import Hero from './sections/Hero';
-import Manifesto from './sections/Manifesto';
-import OverMij from './sections/OverMij';
-import Diensten from './sections/Diensten';
-import Portfolio from './sections/Portfolio';
-import Contact from './sections/Contact';
-import Footer from './sections/Footer';
+import MakerPage from './pages/MakerPage';
+import ConsultingPage from './pages/ConsultingPage';
 
 export default function App() {
   // Initialize smooth scroll
@@ -26,17 +21,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative">
-      <Navigation />
-      <main>
-        <Hero />
-        <Manifesto />
-        <OverMij />
-        <Diensten />
-        <Portfolio />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<MakerPage />} />
+      <Route path="/consulting" element={<ConsultingPage />} />
+    </Routes>
   );
 }

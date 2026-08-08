@@ -4,7 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Manifesto() {
+interface ManifestoProps {
+  text?: string;
+}
+
+export default function Manifesto({ text = 'We bouwen de toekomst, laag voor laag' }: ManifestoProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
 
@@ -56,7 +60,7 @@ export default function Manifesto() {
             color: 'var(--color-void)',
           }}
         >
-          We bouwen de toekomst, laag voor laag
+          {text}
         </h2>
       </div>
     </section>

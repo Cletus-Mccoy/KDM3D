@@ -1,34 +1,17 @@
-const footerLinks = [
-  {
-    title: 'Navigatie',
-    links: [
-      { label: 'Home', href: '#home' },
-      { label: 'Over Mij', href: '#over-mij' },
-      { label: 'Diensten', href: '#diensten' },
-      { label: 'Portfolio', href: '#portfolio' },
-      { label: 'Contact', href: '#contact' },
-    ],
-  },
-  {
-    title: 'Diensten',
-    links: [
-      { label: '3D-printen op maat', href: '#diensten' },
-      { label: 'Design ondersteuning', href: '#diensten' },
-      { label: 'Design validatie', href: '#diensten' },
-    ],
-  },
-  {
-    title: 'Materialen',
-    links: [
-      { label: 'PLA', href: '#' },
-      { label: 'PETG', href: '#' },
-      { label: 'Resin', href: '#' },
-      { label: 'TPU (Flexibel)', href: '#' },
-    ],
-  },
-];
+import { Link } from 'react-router';
 
-export default function Footer() {
+interface FooterLinkGroup {
+  title: string;
+  links: { label: string; href: string }[];
+}
+
+interface FooterProps {
+  linkGroups: FooterLinkGroup[];
+  crossLink: { label: string; to: string };
+  showPrintMetrics?: boolean;
+}
+
+export default function Footer({ linkGroups, crossLink, showPrintMetrics = false }: FooterProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
@@ -57,7 +40,7 @@ export default function Footer() {
 
         {/* Middle: Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {footerLinks.map((group) => (
+          {linkGroups.map((group) => (
             <div key={group.title}>
               <h4
                 className="font-bold text-sm mb-4"
@@ -99,10 +82,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span className="footer-link">+32 471 23 45 67</span>
+                <span className="footer-link">België</span>
               </li>
               <li>
-                <span className="footer-link">België</span>
+                <Link to={crossLink.to} className="footer-link">
+                  {crossLink.label}
+                </Link>
               </li>
             </ul>
           </div>
@@ -136,17 +121,19 @@ export default function Footer() {
               </a>
             </p>
           </div>
-          <div className="flex items-center gap-6">
-            <span className="tech-metrics">
-              LAYER HEIGHT: 0.12MM
-            </span>
-            <span className="tech-metrics">
-              INFILL: 20%
-            </span>
-            <span className="tech-metrics">
-              SPEED: 60MM/S
-            </span>
-          </div>
+          {showPrintMetrics && (
+            <div className="flex items-center gap-6">
+              <span className="tech-metrics">
+                LAYER HEIGHT: 0.12MM
+              </span>
+              <span className="tech-metrics">
+                INFILL: 20%
+              </span>
+              <span className="tech-metrics">
+                SPEED: 60MM/S
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </footer>

@@ -400,6 +400,21 @@
   transform: translateY(0);
 }
 
+.portfolio-item-placeholder-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-void);
+  background: var(--color-paper);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  z-index: 1;
+}
+
 /* ===== CONTACT FORM ===== */
 .contact-input {
   width: 100%;

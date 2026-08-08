@@ -1,15 +1,28 @@
 import { useState, useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { Mail, Phone, MapPin, Send, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { Mail, MapPin, Send, Linkedin } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
-export default function Contact() {
+interface ContactProps {
+  formId: string;
+  /** Tags the inquiry so submissions are distinguishable by track in Formspree. */
+  track: 'maker' | 'consulting';
+  title?: string;
+  description?: string;
+}
+
+export default function Contact({
+  formId,
+  track,
+  title = 'Laten we samenwerken',
+  description = 'Heb je een project in gedachten? Neem contact op en we bespreken de mogelijkheden. Ik reageer binnen 24 uur.',
+}: ContactProps) {
   const headingRef = useScrollReveal<HTMLDivElement>({ y: 40 });
   const formRef = useScrollReveal<HTMLDivElement>({ x: -40, opacity: 0 });
   const infoRef = useScrollReveal<HTMLDivElement>({ x: 40, opacity: 0, delay: 0.2 });
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [state, handleSubmit] = useForm('mnjybgrr');
+  const [state, handleSubmit] = useForm(formId);
   const formElementRef = useRef<HTMLFormElement>(null);
 
   // Show success dialog when form submission succeeds
@@ -32,14 +45,13 @@ export default function Contact() {
         <div ref={headingRef} className="text-center mb-16">
           <p className="section-label">Contact</p>
           <h2 className="section-title" style={{ color: 'white' }}>
-            Laten we samenwerken
+            {title}
           </h2>
           <p
             className="section-body mx-auto"
             style={{ color: 'rgba(255,232,214,0.7)', maxWidth: 550 }}
           >
-            Heb je een project in gedachten? Neem contact op en we bespreken
-            de mogelijkheden. Ik reageer binnen 24 uur.
+            {description}
           </p>
         </div>
 
@@ -47,6 +59,7 @@ export default function Contact() {
           {/* Form */}
           <div ref={formRef} className="lg:col-span-3">
             <form ref={formElementRef} onSubmit={handleSubmit} className="space-y-6">
+              <input type="hidden" name="track" value={track} />
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="contact-label" style={{ color: 'rgba(255,232,214,0.8)' }}>
@@ -180,21 +193,6 @@ export default function Contact() {
                       className="w-10 h-10 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: 'rgba(244,140,6,0.15)' }}
                     >
-                      <Phone
-                        size={18}
-                        style={{ color: 'var(--color-orange)' }}
-                      />
-                    </div>
-                    <span style={{ color: 'rgba(255,232,214,0.8)' }}>
-                      +32 471 23 45 67
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: 'rgba(244,140,6,0.15)' }}
-                    >
                       <MapPin
                         size={18}
                         style={{ color: 'var(--color-orange)' }}
@@ -216,31 +214,14 @@ export default function Contact() {
                 </h4>
                 <div className="flex items-center gap-3">
                   <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                    aria-label="Instagram"
-                  >
-                    <Instagram size={18} color="white" />
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
+                    href="https://be.linkedin.com/in/kasper-daems-91b6a2132"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
                     style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
                     aria-label="LinkedIn"
                   >
                     <Linkedin size={18} color="white" />
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                    aria-label="WhatsApp"
-                  >
-                    <MessageCircle size={18} color="white" />
                   </a>
                 </div>
               </div>
