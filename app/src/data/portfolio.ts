@@ -60,10 +60,26 @@ export const portfolioItems: PortfolioItem[] = [
     ratio: '4/3',
     placeholder: true,
   },
-  // TODO(content): replace with Kasper's real engineering consulting case studies.
+  // TODO(content): enrich with real project specifics (scope, results, photos) per engagement.
   {
-    title: 'Voorbeeldproject — technisch advies',
-    category: 'Consulting',
+    title: 'AluSense — Reliability Engineering',
+    category: 'Project & Reliability Engineer',
+    track: 'consulting',
+    image: '/images/service-validate.jpg',
+    ratio: '16/9',
+    placeholder: true,
+  },
+  {
+    title: 'Stellantis e-Transmissions — Geartrain productie',
+    category: 'Process & Manufacturing Engineer',
+    track: 'consulting',
+    image: '/images/service-design.jpg',
+    ratio: '16/9',
+    placeholder: true,
+  },
+  {
+    title: 'Ontex — OEE & Lean Manufacturing',
+    category: 'Process Engineer (via Ausy Belgium)',
     track: 'consulting',
     image: '/images/portfolio-4.jpg',
     ratio: '16/9',

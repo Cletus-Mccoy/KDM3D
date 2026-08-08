@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ConsultingHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLImageElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -27,8 +27,8 @@ export default function ConsultingHero() {
       },
     });
 
-    scrollTl.fromTo(bg, { scale: 1.2 }, { scale: 1, ease: 'none' });
-    scrollTl.to(overlay, { opacity: 0.85, ease: 'none' }, 0);
+    scrollTl.fromTo(bg, { scale: 1.15 }, { scale: 1, ease: 'none' });
+    scrollTl.to(overlay, { opacity: 0.6, ease: 'none' }, 0);
     scrollTl.to(content, { y: -80, opacity: 0.3, ease: 'none' }, 0);
 
     const entranceTl = gsap.timeline({ delay: 0.3 });
@@ -69,21 +69,14 @@ export default function ConsultingHero() {
 
   return (
     <section ref={sectionRef} id="home" className="hero-section">
-      {/* TODO(content): dedicated consulting hero photo; reusing about-kasper.jpg for now */}
-      <img
-        ref={bgRef}
-        src="/images/about-kasper.jpg"
-        alt="Kasper Daems, engineering consultant"
-        className="hero-bg"
-      />
-      <div ref={overlayRef} className="hero-overlay" style={{ opacity: 0.5 }} />
+      <div ref={bgRef} className="hero-abstract-bg" aria-hidden="true" />
+      <div ref={overlayRef} className="hero-overlay" style={{ opacity: 0.3 }} />
 
       <div ref={contentRef} className="hero-content">
         <div className="overflow-hidden mb-2">
           <h1 className="hero-title hero-title-line">ENGINEERING CONSULTING</h1>
         </div>
         <div className="overflow-hidden">
-          {/* TODO(content): confirm final tagline/positioning statement */}
           <p className="hero-tagline hero-title-line">
             Onafhankelijk technisch advies, van concept tot productie
           </p>

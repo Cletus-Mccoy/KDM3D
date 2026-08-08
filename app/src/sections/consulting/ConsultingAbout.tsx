@@ -82,8 +82,8 @@ export default function ConsultingAbout() {
             </h3>
             <p className="section-body mb-6">
               Sinds juli 2023 werk ik als zelfstandig engineering consultant
-              onder Kadans Konsult. Daarvoor bouwde ik ervaring op bij
-              bedrijven als Ausy Belgium, Ontex, Stellantis e-Transmissions en
+              onder Kadans Konsult. Daarvoor bouwde ik ervaring op via Ausy
+              Belgium (o.a. bij Ontex) en bij Stellantis e-Transmissions en
               AluSense — telkens middenin productieomgevingen, op de vloer bij
               procesverbetering en automatisering.
             </p>
