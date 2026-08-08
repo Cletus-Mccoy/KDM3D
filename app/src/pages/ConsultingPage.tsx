@@ -24,9 +24,9 @@ const footerLinkGroups = [
   {
     title: 'Diensten',
     links: [
-      { label: 'Technisch advies', href: '#diensten' },
-      { label: 'Design & haalbaarheidsreview', href: '#diensten' },
-      { label: 'Prototyping & begeleiding', href: '#diensten' },
+      { label: 'Lean & Operational Excellence', href: '#diensten' },
+      { label: 'Manufacturing & automatisering', href: '#diensten' },
+      { label: 'Rapid prototyping', href: '#diensten' },
     ],
   },
 ];

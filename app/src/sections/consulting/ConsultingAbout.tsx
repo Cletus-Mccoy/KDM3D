@@ -1,14 +1,12 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import { Award, Lightbulb, Wrench } from 'lucide-react';
+import { Award, Factory, Wrench } from 'lucide-react';
 
-// TODO(content): revisit once real client/engagement counts are available.
 const stats = [
-  { icon: Wrench, value: '5+', label: 'Jaar technische ervaring' },
-  { icon: Lightbulb, value: '100%', label: 'Onafhankelijk advies' },
+  { icon: Wrench, value: '3+', label: 'Jaar als zelfstandig consultant' },
+  { icon: Factory, value: '4+', label: 'Industrieën (automotive, FMCG, aluminium, ...)' },
   { icon: Award, value: '3', label: 'Certificeringen (Scrum, Lean, Six Sigma)' },
 ];
 
-// TODO(content): confirm the consulting engagement process — placeholder mirrors the maker-service flow for now.
 const processSteps = [
   {
     step: '01',
@@ -83,20 +81,24 @@ export default function ConsultingAbout() {
               Technisch advies met hands-on ervaring
             </h3>
             <p className="section-body mb-6">
-              Naast KDM 3D — mijn 3D-printservice — werk ik als freelance
-              engineering consultant. Meer dan 5 jaar praktijkervaring in
-              productontwikkeling en prototyping vertaal ik naar concreet,
-              onafhankelijk advies voor bedrijven.
+              Sinds juli 2023 werk ik als zelfstandig engineering consultant
+              onder Kadans Konsult. Daarvoor bouwde ik ervaring op bij
+              bedrijven als Ausy Belgium, Ontex, Stellantis e-Transmissions en
+              AluSense — telkens middenin productieomgevingen, op de vloer bij
+              procesverbetering en automatisering.
             </p>
             <p className="section-body mb-6">
-              Of het nu gaat om een technische haalbaarheidsstudie, ontwerp­review
-              of begeleiding van idee tot productieklaar product — ik denk mee op
-              zowel technisch als praktisch niveau.
+              Ik ben gecertificeerd in Lean Six Sigma (Green Belt), Lean
+              Just-in-Time en Scrum, en combineer die achtergrond met
+              hands-on kennis van additive & subtractive manufacturing,
+              robotica en procesautomatisering.
             </p>
             <p className="section-body">
-              Betrouwbaar, creatief en oplossingsgericht. Ik combineer
-              engineering-inzicht met de praktijkervaring van iemand die zelf
-              dagelijks ontwerpt, print en produceert.
+              Of het nu gaat om het wegwerken van verspilling op de vloer, een
+              technische haalbaarheidsstudie of begeleiding van prototype tot
+              productie — ik denk mee op zowel strategisch als praktisch
+              niveau, en breng zelf de praktijkervaring mee van iemand die
+              dagelijks ontwerpt en produceert bij KDM 3D.
             </p>
           </div>
         </div>

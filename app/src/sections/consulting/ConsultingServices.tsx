@@ -1,27 +1,27 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import { Lightbulb, SearchCheck, Rocket } from 'lucide-react';
+import { Gauge, Cpu, Rocket } from 'lucide-react';
 
-// TODO(content): confirm final service names/descriptions and swap in dedicated photos.
+// TODO(content): swap in dedicated photos once available; reusing maker-service photos for now.
 const services = [
   {
-    icon: Lightbulb,
+    icon: Gauge,
     number: '01',
-    title: 'Technisch advies',
-    desc: 'Onafhankelijke technische begeleiding bij productontwikkeling: van eerste concept tot ontwerpkeuzes en materiaalselectie.',
-    image: '/images/service-design.jpg',
+    title: 'Lean & Operational Excellence',
+    desc: 'Verspilling opsporen en wegwerken op de vloer: OEE-verbetering, centerlining en procesoptimalisatie, onderbouwd met Lean Six Sigma Green Belt en Lean Just-in-Time.',
+    image: '/images/service-validate.jpg',
   },
   {
-    icon: SearchCheck,
+    icon: Cpu,
     number: '02',
-    title: 'Design & haalbaarheidsreview',
-    desc: 'Een kritische blik op je ontwerp of productieproces: haalbaarheid, kostprijs en risico’s in kaart voordat je investeert.',
-    image: '/images/service-validate.jpg',
+    title: 'Manufacturing & automatisering',
+    desc: 'Procesautomatisering en reliability engineering voor productieomgevingen — van PLC-programmatie tot autonomous maintenance.',
+    image: '/images/service-design.jpg',
   },
   {
     icon: Rocket,
     number: '03',
-    title: 'Prototyping & begeleiding',
-    desc: 'Ondersteuning bij het bouwen en testen van prototypes, met praktijkervaring uit eigen 3D-printproductie.',
+    title: 'Rapid prototyping & productontwikkeling',
+    desc: 'Van eerste idee tot werkend prototype, met hands-on ervaring in additive & subtractive manufacturing en CAD (Fusion 360).',
     image: '/images/service-print.jpg',
   },
 ];
