@@ -168,7 +168,7 @@ export default function Contact({
                 </h4>
                 <div className="space-y-4">
                   <a
-                    href="mailto:kasper.daems@gmail.com"
+                    href="mailto:kasper.daems@kadanskonsult.be"
                     className="flex items-center gap-3 group"
                   >
                     <div
@@ -184,7 +184,7 @@ export default function Contact({
                       className="group-hover:text-orange-400 transition-colors"
                       style={{ color: 'rgba(255,232,214,0.8)' }}
                     >
-                      kasper.daems@gmail.com
+                      kasper.daems@kadanskonsult.be
                     </span>
                   </a>
 
@@ -199,7 +199,7 @@ export default function Contact({
                       />
                     </div>
                     <span style={{ color: 'rgba(255,232,214,0.8)' }}>
-                      België — werkzaam in heel Vlaanderen
+                      Rotselaar, België — werkzaam in heel Vlaanderen
                     </span>
                   </div>
                 </div>

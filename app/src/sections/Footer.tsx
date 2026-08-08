@@ -75,14 +75,14 @@ export default function Footer({ linkGroups, crossLink, showPrintMetrics = false
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:kasper.daems@gmail.com"
+                  href="mailto:kasper.daems@kadanskonsult.be"
                   className="footer-link"
                 >
-                  kasper.daems@gmail.com
+                  kasper.daems@kadanskonsult.be
                 </a>
               </li>
               <li>
-                <span className="footer-link">België</span>
+                <span className="footer-link">Bergenhof 54, 3111 Rotselaar</span>
               </li>
               <li>
                 <Link to={crossLink.to} className="footer-link">
@@ -103,7 +103,8 @@ export default function Footer({ linkGroups, crossLink, showPrintMetrics = false
               className="font-mono text-xs tracking-wider"
               style={{ color: 'rgba(255,232,214,0.4)' }}
             >
-              &copy; {new Date().getFullYear()} KADANS KONSULT. Alle rechten voorbehouden.
+              &copy; {new Date().getFullYear()} Kadans Konsult BV. Alle rechten voorbehouden.
+              {' '}— BE 0803.578.880 — Bergenhof 54, 3111 Rotselaar
             </p>
             <p
               className="font-mono text-xs tracking-wider"
